@@ -9,6 +9,7 @@ module Solargraph
     #
     class Rubocop < Base
       include RubocopHelpers
+      include Logging
 
       # Conversion of RuboCop severity names to LSP constants
       SEVERITIES = {
