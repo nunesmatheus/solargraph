@@ -26,7 +26,9 @@ module Solargraph
         options, paths = generate_options(source.filename, source.code)
         store = RuboCop::ConfigStore.new
         runner = RuboCop::Runner.new(options, store)
+        puts "Will run RuboCop with options #{options} and paths #{paths}"
         result = redirect_stdout{ runner.run(paths) }
+        puts "Result from RuboCop: #{result}"
         make_array JSON.parse(result)
       rescue RuboCop::ValidationError, RuboCop::ConfigNotFoundError => e
         raise DiagnosticsError, "Error in RuboCop configuration: #{e.message}"
